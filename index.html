@@ -8,4 +8,37 @@
 
 <body>
     <h1>kontoyyyy</h1>
+    <input type="text" id="taskInput" placeholder="Enter a task...">
+    <button id="addBtn">Add Task</button>
+    <ul id="taskList"></ul>
+    <script>
+  const input = document.getElementById("taskInput");
+  const addBtn = document.getElementById("addBtn");
+  const list = document.getElementById("taskList");
+
+  addBtn.addEventListener("click", function () {
+    const text = input.value.trim();
+    if (text === "") return;
+
+    const li = document.createElement("li");
+
+    const span = document.createElement("span");
+    span.textContent = text;
+    span.addEventListener("click", function () {
+      span.classList.toggle("done");
+    });
+
+    const del = document.createElement("button");
+    del.textContent = "Delete";
+    del.addEventListener("click", function () {
+      li.remove();
+    });
+
+    li.appendChild(span);
+    li.appendChild(del);
+    list.appendChild(li);
+
+    input.value = "";
+  });
+</script>
 </body>
